@@ -7,6 +7,7 @@ lp = exp(-0.5.*x.^2/standardDev^2);
 lp = lp/sum(lp(:)); % normalize
 % calc regularized 1D sobel
 df = -x.*lp;
+% df = df./sum(abs(df(:)));
 % calculate regularized derivatives
 fx = conv2(lp,df',im,'same');
 fy = conv2(df,lp',im,'same');

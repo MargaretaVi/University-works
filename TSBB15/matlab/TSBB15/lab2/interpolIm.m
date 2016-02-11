@@ -10,18 +10,18 @@ Vy = V(:,:,2);
 [X, Y] = meshgrid(1:size(im,2),1:size(im,1));
 
 % remove displacements that are outside the image,
-% Vx(X+Vx < 1 | X+Vx > size(im,2)) = 0;
-% Vy(Y+Vy < 1 | Y+Vy > size(im,1)) = 0;
+ %Vx(X+Vx < 1 | X+Vx > size(im,2)) = 0;
+ %Vy(Y+Vy < 1 | Y+Vy > size(im,1)) = 0;
 
 % make meshgrid with interpolation coordinates
 Xq = X+Vx;
 Yq = Y+Vy;
 
 % interpolatenew image;
-imInterpolated = interp2(X,Y,im,Xq,Yq);
+imInterpolated = interp2(X,Y,im,Xq,Yq,'cubic',0);
 
 % remove eventual nans
-imInterpolated(isnan(imInterpolated))=0;
+%imInterpolated(isnan(imInterpolated))=im(isnan(imInterpolated));
 
 end
 

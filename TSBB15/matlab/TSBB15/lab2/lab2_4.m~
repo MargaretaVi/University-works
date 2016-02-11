@@ -50,6 +50,5 @@ errorNoInterpol = sqrt(sum(diffIm(:).^2));
 %figure(1);
 figure(2); imagesc(im1); title 'Original'; colorbar; axis image; colormap gray;
 figure(3); imagesc(im2); title 'Next frame'; colorbar; axis image; colormap gray;
-figure(5); imagesc(abs(im1-im2interpol)) ;title 'V'; colorbar; axis image;
+%figure(4); quiver(X,Y,V(:,:,1),V(:,:,2)) ;title 'V'; colorbar; axis image;
 figure(4); imagesc(im2interpol); title 'Interpolated image'; colorbar; axis image; colormap gray;
-figure(6); imagesc(abs(im1-im2)) ;title 'V'; colorbar; axis image;

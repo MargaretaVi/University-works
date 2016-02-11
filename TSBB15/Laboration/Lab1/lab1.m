@@ -146,8 +146,10 @@ for ii = 1:5
         d0;
         di(:,jj)=d0;
         prev_d = d0;
+        figure(99);
         subplot(3,3,jj);
         plot(cols(ii)+sum(di(2,:)),rows(ii)+sum(di(1,:)),markerVector{ii});
+        drawnow;
     end
     %pause;
 end
