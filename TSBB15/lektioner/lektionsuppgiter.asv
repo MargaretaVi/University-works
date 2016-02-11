@@ -1,0 +1,99 @@
+%% lektionssuppgifter
+
+initcourse TSBB15
+%% 2.1
+x = [0:pi];
+y = sin(x);
+figure(1);
+plot(x ,y , 'm--h');
+
+%% 2.2
+sin(1);
+sin = 42; % you overwrite the sinus function here to 42
+sin(1); % thus you return 42 here though sin(2) does not exist as how sin is a variable
+which sin
+clear sin
+which sin
+
+% if you have a sin.m file you will overwrite the function with the one you
+% wrote yourself
+
+%% 2.3  % must have file from initcourse
+
+%% 2.4 
+
+A = rand(9,9);
+A(2, 7);            % return the element in row 2, column 7
+A(3:6, 1:2:5);      % row 3 to 6, only column 1,2,5
+A([1 1 5 5 3 1], :); % returns all columns of row 1 , 1, 5, 5, 3 ,1 in this particular order.
+A(end:-2:1, 1:2:end);% returning every other row from the end to the top 
+                    % though the columns values are take from the top to
+                    % bottom.
+A(17);              % returns the 17:th value, start counting each column.
+A(:);               % returns all columns after each other.
+b = [1 7 3];        % define b as a row vector with three columns ( three elements)
+A(b,5) = 97;        % row 1, 7,3 columns 5 is redefined as 97
+A(4, 7:9) = b;      % row 4. coloumn 7:9 is redefined as b so seventh column = 1, 8  = 7 and 9 = 3
+A(A<0.5) = 0;        % for all values in A less than 0.5 set it to 0. which are none
+mask = A==0;         % makes a mask that is as big as A with only zeros
+A(mask) = 1:sum(mask(:)); % returns nothing as A does not contains any zeros
+
+%% 2.5
+
+A = 1:64;                % redefines A to a vector containing values from 1 to 64
+reshape(A, 16, 4)        % reshapes A into a 16 x 4 matrix   
+reshape(A, [4 4 4])      % reshapes A into a 4 x 4 x 4 matrix
+reshape(A, 4, [], 2, 2)  % reshapes in a matrix with elements as matrises (?)
+B = [1 7 2 49];          % defines a vector B
+repmat(B, 10, 2)         % repeating the matrix by 10 rows and 2 columns
+repmat(B, 4:-1:2)        % repeats 4 rows, 4-1 columns and 2 times in depths
+
+%%  2.6
+
+test = rand(128,128);
+imagebw(test,1);
+%% 2.7
+
+[x,y]=meshgrid(-128:127,-128:127);
+subplot(1,2,1);imagebw(x,1)
+subplot(1,2,2);imagebw(y,1)
+r = sqrt(x.^2 + y.^2);
+figure(3)
+imagebw(r,1);
+
+p1=cos(r/2);
+figure(4)
+subplot(1,2,1);imagebw(p1,1)
+P1 = abs(fft(p1));
+subplot(1,2,2);imagebw(P1,1)
+
+% what does fftshift do?
+% Shift zero-frequency component to center of spectrum
+
+% what does ifftshift do?
+% Inverse FFT shift
+
+%%
+p2= cos(r.^2/200);
+P2 = abs(fftshift(fft(ifftshift(p2))));
+
+figure(5)
+subplot(1,2,1);imagebw(p2,1)
+subplot(1,2,2);imagebw(P2,1)
+
+% why not symmetric
+
+% 
+p2=p2.*(r.^2/200<22.5*pi);
+P2 = abs(fftshift(fft(ifftshift(p2))));
+
+figure(6)
+subplot(1,2,1);imagebw(p2,1)
+subplot(1,2,2);imagebw(P2,1)
+
+%% 4
+
+u=x/256*2*pi;
+v=y/256*2*pi;
+
+% how do you generate a lowpass filter in the F
