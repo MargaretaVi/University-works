@@ -1,6 +1,6 @@
 %% laboration 1
 clc; clearvars;
-initcourse TSBB15
+% initcourse TSBB15
 %% 3.5
 % init + preproc
 [I0,J,dTrue]=getCameraman;
@@ -13,6 +13,7 @@ gI = conv2(I0,lp,'same');
 gJ = conv2(J,lp,'same');
 % compute derivatives
 [dJx, dJy] = regu_deri(J,filtersize,std);
+% [dJx, dJy] = regu_deri(J,filtersize,std);
 % bounding box
 height=70; width = 40;
 xc =120;yc=85;
@@ -79,7 +80,7 @@ C2 = ordfilt2(C,1,ones(3));[row,col] = find(C2 == C);
 C3 = bwmorph(C2,'shrink',Inf);
 C4 = cHarris.*C3;
 [~, chind] = sort(C4(:));
-chind = chind(end-4:end);
+%chind = chind(end-4:end);
 [rows, cols] = ind2sub([size(C4)],chind);
 %%
 height=40; width = 40;
