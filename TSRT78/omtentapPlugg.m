@@ -1,0 +1,17 @@
+ %% omtentap pluGG!!!
+ 
+% 5.11
+A= [0.5 0.8; 0 0.5];
+B = [1;1];
+C= [1 0];
+Q = [1 0 ; 0 1];
+pi_bar = dlyap (A,B*B');
+
+R_yy1 =C*A*pi_bar*C'
+
+%% lektion 6 wienerfilter
+
+% 7.2
+
+
+
