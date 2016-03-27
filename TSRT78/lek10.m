@@ -16,7 +16,7 @@ plot([th theta_hat])
 
 %% b) RLS
 
-lambda = 0.999;
+lambda = 0.995;
 p(1) = 1;
 theta_hat(1) = 0;
 % for j = 2:length(y)
