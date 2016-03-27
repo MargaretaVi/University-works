@@ -1,0 +1,12 @@
+reset;
+options solver cplexamp;
+model olja.mod;
+data olja.dat;
+solve;
+display x > olja.res;
+display vinst > olja.res;
+display z > olja.res;
+display kapacitet.slack > olja.res;
+display kapacitet.dual > olja.res;
+exit;
+

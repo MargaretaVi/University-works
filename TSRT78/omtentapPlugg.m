@@ -202,15 +202,14 @@ plot([th theta_hatc'])
 %load('/edu/marvi154/Documents/matlab/TSRT78/lektioner/ekgdata.mat')
 % a) suppress the disturbance by using a notch filter wit ha narrow stop
 % band around 50 Hz. 
-Wp = [45,55]/fsamp*2;
-Ws = [48,52]/fsamp*2;
 
-[N,Wn] = buttord(Wp,Ws,1,10);
-[b,a] = butter(N,Wn,'stop');
+[b, a ] = butter(7, [45/(fsamp/2) 55/(fsamp/2)], 'stop');
 estsigA = filter(b,a,ekg);
 figure(8)
-tsig = (0:length(signal)-1)'/fsamp;
-plot(tsig, signal, tsig,estsigA,'r--')
+plot(estsigA)
+hold on
+plot(signal)
+hold off
 
 % b)
 usig = 10*sin(2*pi*50*tsig+2*pi*rand(1));
@@ -227,3 +226,9 @@ plot(tsig,signal, tsig, ekg-estsigC','r--')
 figure(11)
 [~,estsigd] = rekid_rls(ekg,usig,3,0.95);
 plot(tsig,signal, tsig, ekg-estsigd','r--')
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LEKTION 11
+
+% 9.13
+% DUNT WANNA DO IT!!

@@ -1,0 +1,23 @@
+reset;
+options solver cplexamp;
+model lpuppgift1.1.mod;
+solve;
+display z > lp.res;
+display x > lp.res;
+
+display con1.slack > lp.res;
+display con2.slack > lp.res;
+display con3.slack > lp.res;
+display con4.slack > lp.res;
+display con5.slack > lp.res;
+
+display con1.dual > lp.res;
+display con2.dual > lp.res;
+display con3.dual > lp.res;
+display con4.dual > lp.res;
+display con5.dual > lp.res;
+
+display x > lp.res;
+display x.rc > lp.res;
+
+exit;

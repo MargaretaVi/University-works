@@ -5,8 +5,6 @@ addpath ./forwardL/
 %% Kanade-Lukas, motion estimation
 % load images
 
-
-
 im1 = double(imread('forwardL1.png'))/255;
 im2 = double(imread('forwardL9.png'))/255;
 

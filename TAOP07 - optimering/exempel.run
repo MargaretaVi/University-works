@@ -1,0 +1,13 @@
+reset;
+option solver minos;                  # använd Minos som lösare
+
+model exempel.mod;                    # modellfil (inkl data)
+
+solve;
+
+display obj;
+display x;
+display con1;
+display con2;
+display con1.slack;
+display con2.slack;

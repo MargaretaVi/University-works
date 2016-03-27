@@ -1,5 +1,6 @@
 %% Lab 2 Motion estimation
 clearvars
+initcourse TSBB15
 
 I = double(imread('forwardL1.png'));
 J = double(imread('forwardL2.png'));
@@ -12,7 +13,7 @@ std=2;
 [x, y] = meshgrid(floor(-filtersize/2+1):floor(filtersize/2));
 lp=exp(-0.5*(x.^2+y.^2)/std.^2);
 lp = lp./sum(lp(:));
-initcourse TSBB15
+
 %% demo
 
 %double fungerar för forwardL men ej för SCcar4 bilderna, kör bara imread

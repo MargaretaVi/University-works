@@ -1,6 +1,6 @@
 %% laboration 1
 clc; clearvars;
-% initcourse TSBB15
+initcourse TSBB15
 %% 3.5
 % init + preproc
 [I0,J,dTrue]=getCameraman;
@@ -40,7 +40,7 @@ while(norm(dTrue-d0)>0.1)
 end
 
 %% 4.2
-im1 = double(imread('cornertest.png'));
+im1 = double(imread('cornertest.png'))/255;
 [dim1x, dim1y] = regu_deri(im1,5,3);
 [~,T] = estOrientTensor(dim1x,dim1y);
 T(:,:,1) = conv2(T(:,:,1),lp,'same');
@@ -79,8 +79,8 @@ C = (cHarris > thres);
 C2 = ordfilt2(C,1,ones(3));[row,col] = find(C2 == C);
 C3 = bwmorph(C2,'shrink',Inf);
 C4 = cHarris.*C3;
-[~, chind] = sort(C4(:));
-%chind = chind(end-4:end);
+[~, chind] = sort(C4(:),'descend');
+chind = chind(1:5);
 [rows, cols] = ind2sub([size(C4)],chind);
 %%
 height=40; width = 40;
