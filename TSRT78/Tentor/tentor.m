@@ -213,7 +213,7 @@ legend('estimation', 'validation')
 
 %% 2)
 
-% a) 
+% a)
 num = [0 0 1/2];
 den = [1 5/2 1];
 [r,p,k] = residue(num,den);
@@ -227,19 +227,19 @@ plot(data2(:,2),data2(:,3))
 
 % 1a)
 
-% The forgetting factor balances the accuracy and the adaptation speed of the RLS algorithm. 
-% This as the forgetting factor controls the number of observations to take into account. 
+% The forgetting factor balances the accuracy and the adaptation speed of the RLS algorithm.
+% This as the forgetting factor controls the number of observations to take into account.
 % So a large number of observations gives high static accuracy as it mitigates the noise but then fails to adapt to sudden parameter changes
 
 % 1b)
 % ccirc = ifft(fft(xpad).*fft(ypad));
- x = [0,0,1,0,1,0,0];
- y = [1,2,3,4,5,6,7];
+x = [0,0,1,0,1,0,0];
+y = [1,2,3,4,5,6,7];
 ccirc = ifft(fft(x).*fft(y));
 
 % ans = [10 12 7 9 4 6 8]
 
-% 1d) 
+% 1d)
 Ts = 1;
 Fs = 1/Ts;
 y1 = kron((-1).^(1:20),ones(1,6))';
@@ -272,7 +272,7 @@ Ne = length(est);
 val = y2(2*N/3+1:end);
 Nv = length(val);
 % lossfunction
-% 
+%
 for ii = 1:20
     artmp = ar(est,ii);
     lossest(ii) = 1/Ne*sum(pe(est,artmp).^2);
@@ -285,7 +285,7 @@ for p = 1:20
     lossfunc(p) = mean((val-yp).^2);
 end
 figure(3); clf
-plot(lossfunc); xlabel('modelorder (p)'); ylabel('loss function'); 
+plot(lossfunc); xlabel('modelorder (p)'); ylabel('loss function');
 plot(0:length(lossest)-1,lossest,'-',0:length(lossval)-1,lossval,'--')
 
 %% ---------------------------------------MAr13-------------------------
@@ -307,7 +307,7 @@ plot(fs*(0:Na-1)/Na, abs(Y));
 xlabel('Frequency [Hz]');
 title('Leakage casuse the two sinuses to look like one');
 
-% b) 
+% b)
 Yb = fft([y zeros(1,1024-Na)]);
 Nb = length(Yb);
 figure(2)
@@ -357,4 +357,44 @@ clearvars;
 load Jan14.mat
 
 %%
+
+% 1)
+w1 = 5;
+w2 = 10;
+fs = 15;
+fn = fs/2;
+Ts = 1/fs;
+N = 300;
+t = (0:N-1)./fs;
+s = sin(w1*t) + cos(w2*t);
+
+S = fft(s);
+figure(1)
+plot(fs/(N*2*pi)*(0:N-1)./fn*(2*pi), abs(S)); xlabel('Frequency rad/s')
+
+%plot(fs/(N)*(0:N-1)./fn, abs(S)); xlabel('Frequency rad/s')
+
+%% 3
+
+N = size(vel,1);
+p = size(vel,2);
+vs = 12.8595;
+
+thhat = zeros(N,3);
+for tt = 1:N
+    % Form the phi matrix using the measurements
+    phi = [ ones(1,p)' vel(tt,:)' exp(-vel(tt,:)./vs)'];
+    % Solve the normal equations
+    thhat(tt,:) = phi\fric(tt,:)';
+end
+
+figure(1);
+subplot(311); plot(1:N,thhat(:,1),'LineWidth',2);
+xlabel('time step'); ylabel('Fc estimate');
+subplot(312); plot(1:N,thhat(:,2),'LineWidth',2);
+xlabel('time step'); ylabel('Fv estimate');
+subplot(313); plot(1:N,thhat(:,3),'LineWidth',2);
+xlabel('time step'); ylabel('Fs estimate');
+
+
 
