@@ -372,9 +372,9 @@ S = fft(s);
 figure(1)
 plot(fs/(N*2*pi)*(0:N-1)./fn*(2*pi), abs(S)); xlabel('Frequency rad/s')
 
-%plot(fs/(N)*(0:N-1)./fn, abs(S)); xlabel('Frequency rad/s')
+%plot(fs/(N)*(0:N-1)./fn, abs(S)); xlabel('Frequency [Hz]')
 
-%% 3
+%% 3 a)
 
 N = size(vel,1);
 p = size(vel,2);
@@ -397,4 +397,127 @@ subplot(313); plot(1:N,thhat(:,3),'LineWidth',2);
 xlabel('time step'); ylabel('Fs estimate');
 
 
+%% ---------------------------------------April14-------------------------
 
+% 2)
+
+% Generate the signal
+N = 128;
+Ts = 1;
+x = 0:1:(N-1);
+A = 0.03;
+y = sin( 2 * pi * 0.29 * x ) + A * sin( 2 * pi * 0.25 * x);
+y1 = sin( 2 * pi * 0.29 * x );
+y2 = A * sin( 2 * pi * 0.25 * x);
+
+% Compute the zero-padded DFT and create the frequency grid
+yzeropadded = [y zeros(1,7*N)];
+Yzeropadded = fft(yzeropadded);
+yzeropadded1 = [y1 zeros(1,7*N)];
+Yzeropadded1 = fft(yzeropadded1);
+yzeropadded2 = [y2 zeros(1,7*N)];
+Yzeropadded2 = fft(yzeropadded2);
+grid = 2 * pi / ( 8 * N * 1) * (0:1:(8*N-1) );
+% Plot the DFT
+figure(1)
+subplot(3,2,[1 2])
+semilogy(grid,abs(Yzeropadded),'k','LineWidth',2)
+set(gca,'xlim',[2*pi*0.2 2*pi*0.35])
+set(gca,'ylim',[0.1 100])
+xlabel('Frequency (rad/s)'); ylabel('DTFT of signal');
+hold on;
+plot(2*pi*0.29*[1 1],[0.1 100],'g','LineWidth',2)
+plot(2*pi*0.25*[1 1],[0.1 100],'g','LineWidth',2)
+hold off;
+subplot(3,2,3)
+semilogy(grid,abs(Yzeropadded1),'k','LineWidth',2)
+set(gca,'xlim',[2*pi*0.2 2*pi*0.35])
+set(gca,'ylim',[0.1 100])
+xlabel('Frequency (rad/s)'); ylabel('DTFT of signal 1');
+hold on;
+plot(2*pi*0.29*[1 1],[0.1 100],'g','LineWidth',2)
+plot(2*pi*0.25*[1 1],[0.1 100],'g','LineWidth',2)
+hold off;
+subplot(3,2,4)
+semilogy(grid,abs(Yzeropadded2),'k','LineWidth',2)
+set(gca,'xlim',[2*pi*0.2 2*pi*0.35])
+set(gca,'ylim',[0.1 100])
+xlabel('Frequency (rad/s)'); ylabel('DTFT of signal 2');
+
+hold on;
+plot(2*pi*0.29*[1 1],[0.1 100],'g','LineWidth',2)
+plot(2*pi*0.25*[1 1],[0.1 100],'g','LineWidth',2)
+hold off;
+
+%% 3
+
+N=1000; w=randn(1,N); e=randn(1,N);
+y=filter([1 0.5  0],[1 -1 0.09],w)+filter([1 0.9 0],[1 -1 0.25],e);
+
+figure(1)
+subplot(3,2,[1 2])
+plot(y); ylabel('signal'); xlabel('time');
+
+% residual analysis
+est = y(1:ceil(2*N/3));
+val = y(ceil(2*N/3)+1:N);
+resvar = zeros(20,1);
+for pp = 1:20
+m = ar(est,pp);
+yhat = predict(m,val',1);
+resvar(pp) = mean( (yhat-val').^2 );
+end
+subplot(3,2,[3 4])
+
+plot(1:20,resvar);% axis([0 20 1.0 3]);
+ylabel('Prediction error variance'); xlabel('model order (p)');
+
+%% ---------------------------------------Aug14-------------------------
+clearvars
+load Aug14.mat
+%%
+%1
+t=(0:999)';
+y=1./(sin(0.1*t)+2)+0.01*randn(size(t));
+Ts = 1;
+fs = 1/Ts;
+
+% a)
+Y = fft(y);
+
+figure(1);clf
+plot(fs*(0:length(Y)-1)/length(Y),abs(Y));
+
+% b)
+y=detrend(y);
+N = length(y);
+est = y(1:ceil(2*N/3));
+Ne = length(est);
+val = y(ceil(2*N/3)+1:end);
+Nv = length(val);
+
+for tt = 1:20
+   artmp = ar(est,tt);
+   lossest(tt) = 1/Ne*sum(pe(artmp,est).^2);
+   lossval(tt) = 1/Nv*sum(pe(artmp,val).^2);
+end
+
+figure(2); clf
+plot(1:length(lossest),lossest,'-', 1:length(lossval),lossval,'--')
+
+th = ar(y,2*20);
+bode(th)
+angels = angle(roots(th.A))/(2*pi*t);
+
+%% 4
+
+N = length(y);
+Ts = 1/30;
+fs = 1/Ts;
+n = 0:N-1; t = n*Ts;
+y = detrend(y);
+ypadd = [y zeros(1,5*1024-N)];
+Y = fft(ypadd);
+plot(60*fs*(0:length(Y)-1)/length(Y),  abs(Y))
+xlabel('Heart rate [bpm]')
+set(gca,'xlim',[40 70])
