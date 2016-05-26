@@ -32,7 +32,7 @@ function [yfb,ybf,M]=filtfilt(bf,af,bb,ab,u,M);
 %     plot([u y])
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 
 if nargin==5; M=[]; end;

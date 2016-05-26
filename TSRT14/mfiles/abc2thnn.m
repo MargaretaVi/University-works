@@ -5,7 +5,7 @@ function [th,nn,P]=abc2thnn(a,b,c)
 %
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 
 na=size(a,2)-1;

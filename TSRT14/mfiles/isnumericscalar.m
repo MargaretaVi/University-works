@@ -4,6 +4,6 @@ function ok=isnumericscalar(x)
 % ok=isnumscalar(x)
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 ok = isnumeric(x) && isscalar(x);

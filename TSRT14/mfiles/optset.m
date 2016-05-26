@@ -6,7 +6,7 @@ function [opt,errmsg]=optset(opt,varargin);
 %   errmsg contains error messages
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 
 if isfield(opt,'fontsize')

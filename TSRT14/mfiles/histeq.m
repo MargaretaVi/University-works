@@ -16,7 +16,7 @@ function H=histeq(H);
 %   See also: ltvplot, tfdplot
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 [n,m]=size(H);
 [h,ind]=sort(H(:));

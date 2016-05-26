@@ -12,7 +12,7 @@ function [ymax,ind]=locmax(y,n)
 %   plot(y.t,y.y,'-',y.t(ind(1:6)),ymax(1:6),'o')
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 
 % Find all local maxima

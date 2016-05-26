@@ -1,7 +1,7 @@
 function dx=nipfr(t,x,u,th)
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 X=x(1,:);
 T=x(2,:);

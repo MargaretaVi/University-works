@@ -12,7 +12,7 @@ function [xhat, P] = condition(jointdist, y, condind)
 %  P           the approximated conditional covariance
 
 % Copyright Gustaf Hendeby
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
   if ~isa(jointdist, 'pdfclass')
     error('The first argument must be a distribution');

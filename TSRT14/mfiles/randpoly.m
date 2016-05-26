@@ -20,7 +20,7 @@ function [p,fs]=randpoly(n,varargin);
 %   The function is called by rand in the ss and tf objects
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 opt=struct('frac',0.7,'fs',NaN);
 opt=optset(opt,varargin);

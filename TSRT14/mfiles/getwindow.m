@@ -17,7 +17,7 @@ function w=getwindow(N,type,n)
 %   See also: sig.window
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<2
   type='hanning';

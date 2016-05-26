@@ -21,7 +21,7 @@ function y=dbsignal(name,help)
 %   planepath Measurements y=p of aircraft position.
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 y=load([name]);
 if nargin>1

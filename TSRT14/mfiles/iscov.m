@@ -8,7 +8,7 @@ function [b,r]=iscov(P)
 %   r=4 P is not positive semi-definite
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 
 b=true;

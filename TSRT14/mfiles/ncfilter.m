@@ -19,7 +19,7 @@ function y=ncfilter(b,a,u,M)
 %   See also: filterfilter
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 
 if nargin<4, M=[]; end

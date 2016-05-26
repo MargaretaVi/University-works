@@ -18,7 +18,7 @@ function m=exmotion(ex,opt)
 %   imukin3dbias As imukin3d but with 6 bias states for the inertial measurem.
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 switch lower(ex)
 

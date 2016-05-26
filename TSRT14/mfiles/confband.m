@@ -5,7 +5,7 @@ function p=confband(x,yMC,plottype,col,ax,level,type,lw)
 % type 1 gives filled area, 2 gives upper and lower bound
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<8, lw=1; end
 if nargin<7, type=1; end

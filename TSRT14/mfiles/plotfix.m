@@ -9,7 +9,7 @@ function plotfix(h,fs,lw)
 %   lw 2         linewidth
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
   
 if nargin<3, lw=2; end

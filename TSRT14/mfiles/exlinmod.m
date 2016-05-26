@@ -33,7 +33,7 @@ function m=exlinmod(ex,opt1);
 %   See also: exltv, getsignal
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 switch lower(ex)
     case 'tf1c'

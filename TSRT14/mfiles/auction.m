@@ -19,7 +19,7 @@ function [ind1,ind2,m]=auction(D)
 %   ind=auction(D)
 
 % Copyright: Fredrik Gustafsson and Umut Orguner
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 
 epsilon=0.1; %amount of deviation from the optimal reward

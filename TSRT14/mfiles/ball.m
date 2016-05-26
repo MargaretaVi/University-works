@@ -10,7 +10,7 @@ function x = ball(t,x,u,th)
 %  y=[x(2);x(3)] as an example
 % 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 
 g=[0;0;9.81];

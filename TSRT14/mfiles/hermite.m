@@ -6,7 +6,7 @@ function [p,x,w]=hermite(n)
 % w are the corresponding weights for the quadrature formula
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 p=1;
 for m=2:n+1

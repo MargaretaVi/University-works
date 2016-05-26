@@ -6,7 +6,7 @@ classdef gmdist < pdfclass
 
 
 %   Copyright Fredrik Gustafsson, Sigmoid AB
-%   $ Revision: 15-Aug-2015  $
+%   $ Revision: 27-Apr-2016  $
 
 
   properties (SetAccess = public)

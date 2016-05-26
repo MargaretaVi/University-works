@@ -5,7 +5,7 @@ function p=confband2(x,y,Py,plottype,col,ax,level,conftype,lw)
 % conftype 1 gives filled area, 2 gives upper and lower bound
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<9, lw=1; end
 if nargin<8, conftype=1; end

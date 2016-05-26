@@ -16,7 +16,7 @@ function fpp=numhess(f,ind,varargin)
 %   x=[1 1]'; y=2; f='[x''*x+y^2*x(2)^10]',numhess(f,2,x,y)
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 arg=varargin;
 

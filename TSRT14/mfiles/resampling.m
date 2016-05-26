@@ -16,7 +16,7 @@ function [x,w,ind]=resampling(x,w,type)
 
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<3
     type='simple';

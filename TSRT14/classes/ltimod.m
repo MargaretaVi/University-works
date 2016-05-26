@@ -2,7 +2,7 @@ classdef ltimod
 %LTIMOD is the parent of LSS, LTF, ARX, COV, SPEC, FREQ
 
 %   Copyright Fredrik Gustafsson, Sigmoid AB
-%   $ Revision: 15-Aug-2015  $
+%   $ Revision: 27-Apr-2016  $
 
 properties (SetAccess = public)
 % fs MC name xlabel ulabel ylabel desc

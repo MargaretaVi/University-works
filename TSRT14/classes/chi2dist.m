@@ -2,7 +2,7 @@ classdef chi2dist < pdfclass
 %CHI2DIST defines the chi2 distribution chi2(d)
 
 % Copyright Fredrik Gustafsson, Sigmoid AB
-% $ Revision: 15-Aug-2015  $
+% $ Revision: 27-Apr-2016  $
 
 
 properties (SetAccess = public)

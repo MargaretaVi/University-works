@@ -6,7 +6,7 @@ function s=mat2strformat(n,format);
 % Optional format is the same as in num2str {'%11.4g'}
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<2; format='%11.4g'; end
 [nr,nc]=size(n);

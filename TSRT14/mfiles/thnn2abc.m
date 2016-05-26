@@ -5,7 +5,7 @@ function [a,b,c]=thnn2abc(th,nn,P)
 %   Internal function for arx and armax objects
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<3; P=[]; end
 nn=nn(:)';

@@ -20,7 +20,7 @@ function m=exnl(ex,opt1)
 %               opt1 picks out a motion model ('ctcv2d' default)
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 
 

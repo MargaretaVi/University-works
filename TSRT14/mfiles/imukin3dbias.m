@@ -1,7 +1,7 @@
 function x = imukin3dbias(t,x,u,th)
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
   % Kinematic 3D model for IMU input with six bias states
   T=th(1);

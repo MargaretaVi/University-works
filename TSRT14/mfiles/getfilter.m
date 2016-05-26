@@ -29,7 +29,7 @@ function G=getfilter(n,fc,varargin)
 %   See also: tftool,
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 opt=struct('alg','butter','type','lp','ripple',0.5,'fs',2);
 opt=optset(opt,varargin);

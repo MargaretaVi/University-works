@@ -22,7 +22,7 @@ classdef sensormod < nl
 %   methods sensormod           lists all methods for this class
 
 %   Copyright Fredrik Gustafsson, Sigmoid AB
-%   $ Revision: 15-Aug-2015  $
+%   $ Revision: 27-Apr-2016  $
 
 
 methods
@@ -936,6 +936,7 @@ end
 sz = size(X1);
 N = numel(X1);
 
+X =  repmat(s.x0', [N, 1]);
 X(:,ind)=[X1(:) X2(:)];
 if ~isempty(s.px0)
    px0=pdf(s.px0,X);
@@ -1051,9 +1052,10 @@ for n=1:N;
    end
    nt=floor(length(x)/2);
    x=reshape(x(1:2*nt),2,nt)';
+   hold on;
+   box on;
    for k=1:nt
       plot(x(k,1),x(k,2),['*',opt.col(n)],'linewidth',opt.linewidth)
-      hold on
       text(x(k,1),x(k,2),['T',num2str(k)],'color',opt.col(n),'fontsize',opt.fontsize)
       if ~isempty(s.px0)  & opt.conf>0
            P=cov(s.px0);

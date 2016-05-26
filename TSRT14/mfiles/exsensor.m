@@ -33,7 +33,7 @@ function s=exsensor(ex,M,N,nx,varargin)
 %  l=exsensor('list') gives a cell array with all options
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<2, M=1; end
 if nargin<3, N=1; end

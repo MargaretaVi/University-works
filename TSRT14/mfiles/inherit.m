@@ -4,7 +4,7 @@ function sout=inherit(sout,s,nameext)
 %   nameext is extended to the object name to trace its background
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<3, nameext=[]; end
 

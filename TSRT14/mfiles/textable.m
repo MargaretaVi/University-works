@@ -37,7 +37,7 @@ function texcode=textable(V,varargin)
 %   See also: texmatrix, ss/tex, tf/tex
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 
 opt=struct('filename','','decimals',1,'xlabel','','ylabel','','title','');

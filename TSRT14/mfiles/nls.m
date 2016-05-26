@@ -94,7 +94,7 @@ function [mhat,res] = nls(m,z,varargin)
 %
 
 % Copyright (C) 2006 Thomas Schön and Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 
 if nargin<1

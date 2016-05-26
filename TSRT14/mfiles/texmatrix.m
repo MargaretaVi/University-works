@@ -25,7 +25,7 @@ function texcode=texmatrix(V,varargin)
 %   See also: textable, ss/tex, tf/tex
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 opt=struct('filename','','decimals',1,'env','eqnarray*');
 opt=optset(opt,varargin);

@@ -7,7 +7,7 @@ function contour2(x,y,z,lev,levelon,varargin)
 %   levelon binary, nonzero means print labels
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<4;
    C=contourc(x,y,z);

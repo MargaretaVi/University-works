@@ -11,7 +11,7 @@ function Ph=sqrtcov(P)
 %   See also: sqrtm
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 
 [U,D,V]=svd(P);

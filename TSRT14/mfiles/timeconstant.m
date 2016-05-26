@@ -7,7 +7,7 @@ function [Ts,Tf]=timeconstant(a,fs)
 %   a is either the denominator polynomial of a TF or A matrix in a SS model
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<2
    error('TIMECONSTANT: usage [Ts,Tf]=timeconstant(a,fs)')

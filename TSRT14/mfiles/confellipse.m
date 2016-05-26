@@ -5,7 +5,7 @@ function confellipse(x,y,col,ax,level,type)
 % type 1 gives filled area, 2 gives upper and lower bound
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<6, type=1; end
 

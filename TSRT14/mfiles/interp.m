@@ -21,7 +21,7 @@ function y2=interp(varargin);
 %   y2=interp(y1,t1,t2,'method','hold','degree',1);
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 optvar=[];
 if isstruct(varargin{1})

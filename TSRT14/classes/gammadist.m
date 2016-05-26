@@ -5,7 +5,7 @@ classdef gammadist < pdfclass
 %   Reference: http://en.wikipedia.org/wiki/Gamma_distribution
 
 %   Copyright Fredrik Gustafsson, Sigmoid AB
-%   $ Revision: 15-Aug-2015  $
+%   $ Revision: 27-Apr-2016  $
 
 properties (SetAccess = public)
   a,b;                    % Shape and scale

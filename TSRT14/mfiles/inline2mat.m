@@ -5,7 +5,7 @@ function c=inline2mat(g,ginit,gend)
 %   but the math rows in g are expanded to char matrix 
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 g=formula(g);
 ind1=find(g=='[');

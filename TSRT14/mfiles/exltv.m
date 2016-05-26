@@ -21,7 +21,7 @@ function m=exltv(ex,N);
 %   See also: exlti, getsignal, randltv
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<2, N=500; end
 

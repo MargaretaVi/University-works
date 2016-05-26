@@ -26,7 +26,7 @@ function m=exrarx(ex,N);
 %   See also: getsignal, exlti, randrarx
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<2, N=500; end
 

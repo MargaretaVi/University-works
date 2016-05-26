@@ -5,7 +5,7 @@ function confellipse2(x,P,col,ax,level,linewidth)
 % x is (N,2), Px is (N,2,2)
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 if nargin<6, linewidth=1; end
 if nargin<5, level=99; end

@@ -47,7 +47,7 @@ function z=getsignal(ex,N,opt1,opt2);
 %   See also: exlti, exltv, dbsig
 
 % Copyright Fredrik Gustafsson
-%$ Revision: 15-Aug-2015  $
+%$ Revision: 27-Apr-2016  $
 
 
 if nargin<2; N=1024; end
