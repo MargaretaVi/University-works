@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+Y:\Documents\Skolarbete\Java\TDDC17_lab1\lab1_workspace\.metadata\.plugins\org.eclipse.jdt.core
+4211767635.index
+3581163120.index
+3867853513.index
