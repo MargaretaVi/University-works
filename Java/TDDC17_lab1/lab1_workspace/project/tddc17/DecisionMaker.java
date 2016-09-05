@@ -6,6 +6,8 @@ import java.util.*;
 public class DecisionMaker {
 	private int [] surroundings;
 	private int[][] map;
+	private int xpos;
+	private int ypos;
 	private Random rand = new Random();
 	private Boolean bump;
 	private Boolean deadEnd;
@@ -25,10 +27,12 @@ public class DecisionMaker {
 	DecisionMaker(){
 		this.surroundings = new int [] {0,0,0,0};
 	}
-	public void updateSurroundings(int[] surroundings,int[][] map,Boolean bump){
+	public void updateSurroundings(int[] surroundings,int[][] map,Boolean bump, int xpos, int ypos, int dir){
 		this.surroundings = surroundings;
 		this.bump=bump;
 		this.map=map;
+		this.xpos = xpos;
+		this.ypos = ypos;
 		if(bump && !hasMultiplePaths()){
 			this.deadEnd = true;
 		}
@@ -122,8 +126,115 @@ public class DecisionMaker {
 		}
 		
 	}
-	
-	
+	public Boolean isUnexplored(){
+		for(int i=1;i<16;i++){
+			for(int j=1;j<16;j++){
+				if(map[i][j]==0){
+					if(map[i+1][j]!=1 && map[i-1][j]!=1 && map[i][j+1]!=1 && map[i][j-1]!=1){
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	public int[] wayFinder(){
+		int[][] costMap = new int[30][30];
+		
+		
+		for(int i=0;i<30;i++){
+			for(int j=0;j<30;j++){
+				costMap[i][j]=100;
+			}
+		}
+		costMap[xpos][ypos]=0;
+		System.out.println("SAFE POINT 1");
+		for(int i=1;i<29;i++){
+			for(int j=1;j<29;j++){
+					int least = costMap[i][j];
+					if((least > costMap[i+1][j]+1) && (map[i][j] != 1)){
+						costMap[i][j]=costMap[i+1][j]+1;
+					}
+					if((least > costMap[i-1][j]+1) && (map[i][j] != 1)){
+						costMap[i][j]=costMap[i-1][j]+1;
+					}
+					if((least > costMap[i][j+1]+1) && (map[i][j] != 1)){
+						costMap[i][j]=costMap[i][j+1]+1;
+					}
+					if((least > costMap[i][j-1]+1) && (map[i][j] != 1)){
+						costMap[i][j]=costMap[i][j-1]+1;
+					}
+			}
+		}
+		
+		
+		
+		
+		
+		System.out.println("BEHOLD THE COSTMAP\n");
+		for(int i=0;i<17;i++){
+			String tst="";
+			for(int j=0;j<17;j++){
+					
+					tst=tst+" "+Integer.toString(costMap[i][j])+" ";
+					
+					
+			}
+			System.out.println(tst);
+		}
+		System.out.println("THE COSTMAP BIDS THEE FAREWELL\n");
+		
+		
+		
+		
+		
+		
+		
+		System.out.println("SAFE POINT 2");
+		int cost = costMap[1][1];
+		int[][] path = new int[cost+1][2];
+		int lastx = 1;
+		int lasty = 1;
+		path[cost][0]=1; //home
+		path[cost][1]=1;
+		for(int i = cost-1; i>0 ;i--){
+			if(costMap[lastx][lasty]+1==costMap[lastx-1][lasty]){
+				path[i][0]=lastx-1;
+				path[i][1]=lasty;
+				lastx=lastx-1;
+				continue;
+			}
+			else if(costMap[lastx][lasty]+1==costMap[lastx+1][lasty]){
+				path[i][0]=lastx+1;
+				path[i][1]=lasty;
+				lastx=lastx+1;
+				continue;
+			}
+			else if(costMap[lastx][lasty]+1==costMap[lastx][lasty-1]){
+				path[i][0]=lastx;
+				path[i][1]=lasty-1;
+				lasty=lasty-1;
+				continue;
+			}
+			else if(costMap[lastx][lasty]+1==costMap[lastx][lasty+1]){
+				path[i][0]=lastx;
+				path[i][1]=lasty+1;
+				lasty=lasty+1;
+				continue;
+			}
+			
+			
+		}
+		System.out.println("SAFE POINT 3");
+		path[0][0]=xpos;
+		path[0][1]=ypos;
+		for(int i=0; i<cost+1;i++){
+			
+				System.out.println(path[i][0]+", "+path[i][1]+"\n");
+			
+		}
+		return new int[]{3};
+	}
 	
 	
 }

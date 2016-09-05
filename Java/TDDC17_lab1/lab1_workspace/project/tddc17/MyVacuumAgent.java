@@ -110,7 +110,7 @@ class MyAgentProgram implements AgentProgram {
 	private Random random_generator = new Random();
 	
 	// Here you can define your variables!
-	public int iterationCounter = 1000;
+	public int iterationCounter = 1500;
 	public MyAgentState state = new MyAgentState();
 	
 	// moves the Agent to a random start position
@@ -161,10 +161,13 @@ class MyAgentProgram implements AgentProgram {
     	System.out.println("dir=" + state.agent_direction);
     	
  
-	    iterationCounter--;
+	    //iterationCounter--;
 	    
-	    if (iterationCounter==0)
+	    //if (iterationCounter==0)
+	   /* while(!isUnexplored()){
 	    	return NoOpAction.NO_OP;
+	    }
+    	*/
 
 	    DynamicPercept p = (DynamicPercept) percept;
 	    Boolean bump = (Boolean)p.getAttribute("bump");
@@ -200,7 +203,8 @@ class MyAgentProgram implements AgentProgram {
 	    
 	    // Next action selection based on the percept value
 	    int[] currentMap =checkSurroundings();
-	    state.decisionMaker.updateSurroundings(currentMap, state.world,bump);
+	    state.decisionMaker.updateSurroundings(currentMap, state.world,bump, state.agent_x_position,state.agent_y_position,state.agent_direction);
+	  
 	    if (dirt)
 	    {
 	    	System.out.println("DIRT -> choosing SUCK action!");
@@ -209,6 +213,10 @@ class MyAgentProgram implements AgentProgram {
 	    } 
 	    else
 	    {
+	    	if(!state.decisionMaker.isUnexplored()){
+	    		state.decisionMaker.wayFinder();
+	  	    	return NoOpAction.NO_OP;
+	  	    }
 	    	if (bump)
 	    	{
 	    		state.currentlyDodging = true;
