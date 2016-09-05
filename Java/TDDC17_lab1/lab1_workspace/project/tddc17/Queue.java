@@ -27,7 +27,7 @@ public class Queue {
 			case 3:
 				return 0;
 			}
-		return 7; // ska inte hända :)
+		return 7; // ska inte hÃ¤nda :)
 		}
 	public void addCommandSequence(int[] seq){
 		for(int i=seq.length-1; i>=0;i--){

@@ -30,6 +30,7 @@ class MyAgentState
 	public int agent_y_position = 1;
 	public int agent_last_action = ACTION_NONE;
 	public Queue commandQueue = new Queue();
+	public DecisionMaker decisionMaker = new DecisionMaker();
 	public Boolean currentlyDodging = false;
 	public final int [] dodgeObstacle = new int[] {ACTION_TURN_RIGHT,ACTION_MOVE_FORWARD,ACTION_TURN_LEFT};
 	public final int [] uTurn = new int[] {ACTION_TURN_RIGHT,ACTION_TURN_RIGHT};
@@ -105,11 +106,11 @@ class MyAgentState
 
 class MyAgentProgram implements AgentProgram {
 
-	private int initnialRandomActions = 0;
+	private int initnialRandomActions = 10;
 	private Random random_generator = new Random();
 	
 	// Here you can define your variables!
-	public int iterationCounter = 10;
+	public int iterationCounter = 1000;
 	public MyAgentState state = new MyAgentState();
 	
 	// moves the Agent to a random start position
@@ -160,7 +161,7 @@ class MyAgentProgram implements AgentProgram {
     	System.out.println("dir=" + state.agent_direction);
     	
  
-	    //iterationCounter--;
+	    iterationCounter--;
 	    
 	    if (iterationCounter==0)
 	    	return NoOpAction.NO_OP;
@@ -199,6 +200,7 @@ class MyAgentProgram implements AgentProgram {
 	    
 	    // Next action selection based on the percept value
 	    int[] currentMap =checkSurroundings();
+	    state.decisionMaker.updateSurroundings(currentMap, state.world,bump);
 	    if (dirt)
 	    {
 	    	System.out.println("DIRT -> choosing SUCK action!");
@@ -207,18 +209,13 @@ class MyAgentProgram implements AgentProgram {
 	    } 
 	    else
 	    {
-	    	
 	    	if (bump)
 	    	{
 	    		state.currentlyDodging = true;
 	    		state.commandQueue.clearQueue();
 	    		state.agent_last_action=state.ACTION_NONE;
-	    		int [] tmp = new int[] {state.ACTION_TURN_RIGHT};
-	    		state.commandQueue.addCommandSequence(state.holdLeft);
-	    		state.commandQueue.addCommandSequence(state.holdLeft);
-	    		state.commandQueue.addCommandSequence(tmp);
-	    		
-		    	return updateState(state.commandQueue.getNext());
+	    		state.commandQueue.addCommandSequence(state.decisionMaker.getDecision());
+	    		return updateState(state.commandQueue.getNext());
 	    	}
 	    	else if(state.commandQueue.hasNext()){
 	    		System.out.println("The commandQueue is non-empty, and currently has " + state.commandQueue.getNumberOfCommands() + " entries\n");
@@ -227,16 +224,10 @@ class MyAgentProgram implements AgentProgram {
 	    	}
 	    	else
 	    	{
-	    		if(currentMap[3]==0){
-	    			state.commandQueue.addCommandSequence(new int[] {state.ACTION_TURN_LEFT,state.ACTION_MOVE_FORWARD});
-	    			return updateState(state.commandQueue.getNext());
-	    		}
-	    		else if(currentMap[1]==0){
-	    			state.commandQueue.addCommandSequence(new int[] {state.ACTION_TURN_RIGHT,state.ACTION_MOVE_FORWARD});
-	    			return updateState(state.commandQueue.getNext());
-	    		}
-	    		state.agent_last_action=state.ACTION_MOVE_FORWARD;
-	    		return LIUVacuumEnvironment.ACTION_MOVE_FORWARD;
+	    		state.commandQueue.addCommandSequence(state.decisionMaker.getDecision());
+	    		return updateState(state.commandQueue.getNext());
+	    		/*state.agent_last_action=state.ACTION_MOVE_FORWARD;
+	    		return LIUVacuumEnvironment.ACTION_MOVE_FORWARD;*/
 	    	}
 	    }
 	}
