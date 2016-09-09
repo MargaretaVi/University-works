@@ -49,28 +49,35 @@ public class CustomGraphSearch implements SearchObject {
 		else{
 			System.out.println("Well spank me hard, and call me Judy.");
 		}
-		while(!p.isGoalState(frontier.peekAtFront().getState())){
+		while(!frontier.isEmpty()){
 			
 			ArrayList<GridPos> childStates = p.getReachableStatesFrom(frontier.peekAtFront().getState());
+			SearchNode currentParent = frontier.peekAtFront();
 			frontier.removeFirst();
+			if(p.isGoalState(currentParent.getState())){
+				path=currentParent.getPathFromRoot();
+				return path;
+			}
+			
+			explored.add(currentParent);
+			int tmp = 0;
 			for(int i=0;i<childStates.size();i++){
-				
-				if(!explored.contains(childStates.get(i))){
-					SearchNode currentState = new SearchNode(childStates.get(i));
+				SearchNode currentState = new SearchNode(childStates.get(i),currentParent);
+				if(!explored.contains(currentState) && !frontier.contains(currentState)){
 					//System.out.println("Currently at: " + tmp.toString()+"\n");
 					if(insertFront){ // breadth or depth first?
 						frontier.addNodeToFront(currentState);
-						
 					}
 					else{
 						frontier.addNodeToBack(currentState);
 					}
-					explored.add(currentState);
+					
+					
 				}
 			}
 		}
-		path=frontier.peekAtFront().getPathFromRoot();
-		System.out.println("I get here");
+		
+
 		
 		
 		/* Some hints:

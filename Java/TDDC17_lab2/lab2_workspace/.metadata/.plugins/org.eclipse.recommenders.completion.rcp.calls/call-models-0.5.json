@@ -1,0 +1,12 @@
+{
+  "Y:\\Documents\\Skolarbete\\Java\\TDDC17_lab2\\lab2_workspace\\lab2_part1\\src": {
+    "location": "Y:\\Documents\\Skolarbete\\Java\\TDDC17_lab2\\lab2_workspace\\lab2_part1\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027Y:\\Documents\\Skolarbete\\Java\\TDDC17_lab2\\lab2_workspace\\lab2_part1\\src\u0027. Skipped."
+  },
+  "C:\\Program Files (x86)\\Java\\jre1.8.0_73\\lib\\rt.jar": {
+    "coordinate": "jre:jre:zip:call:1.0.0",
+    "location": "C:\\Program Files (x86)\\Java\\jre1.8.0_73\\lib\\rt.jar",
+    "status": "RESOLVED"
+  }
+}
