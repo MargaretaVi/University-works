@@ -17,7 +17,7 @@
 			(wide_door ?d)					;;; the door is wide     
 			(on_box ?s)					;;; the robot is on the box
 			(in_room ?s ?r)					;;; the robot is in the room
-			(empty ?gripper)				;;; the gripper is empty (only check one hand at a time)
+			(empty ?g)  					;;; the gripper is empty (only check one hand at a time)
 			(connected ?r1 ?r2 ?d)				;;; rooms connected via door
 
 )
@@ -54,8 +54,8 @@
 )
   
   (:action climb_down
-		:parameters (?s)
-	   	:precondition (on_box ?s)
+		:parameters (?s ?r)
+	   	:precondition (and (on_box ?s) (light_on ?r))
 	   	:effect (not (on_box ?s))
 )  
  (:action drop_object
@@ -74,19 +74,19 @@
   (:action turn_off_light
   	   :parameters(?r ?s)
 	   :precondition(and(on_box ?s) (in_room ?s ?r) (light_on ?r))
-	   :effect (light_on ?r)
+	   :effect (not (light_on ?r))
 )
 
   (:action change_room_no_item
   	   :parameters (?from ?to ?s ?g ?g2 ?so)
-	   :precondition(and (not(small_object_in_room ?from ?so)) (or (adjacent ?from ?to) (adjacent ?to ?from))
-	   		      (and (empty ?g ) (empty ?g2)) 
-			      (not (on_box ?s)))
+	   :precondition(and (not(small_object_in_room ?from ?so)) (or (adjacent ?from ?to) (adjacent ?to ?from)) 
+	   		     (and (empty ?g ) (empty ?g2))
+			     (not (on_box ?s)))
 	   :effect(and (in_room ?s ?to)  (not (in_room ?s ?from)))  	   
 )
 
 (:action change_room_both_hands
-  	   :parameters (?from ?to ?s ?g ?g2 ?so1 ?so2)
+  	   :parameters (?from ?to ?s ?g ?g2 ?so1 ?so2 )
 	   :precondition(and (small_object_in_room ?from ?so1) (small_object_in_room ?from ?so2)  
 	   		     (or (adjacent ?from ?to) (adjacent ?to ?from)) (empty ?g ) (empty ?g2)
 			     (not (on_box ?s)))
