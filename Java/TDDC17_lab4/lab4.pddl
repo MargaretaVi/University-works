@@ -32,6 +32,12 @@
 			     (small_object_in_room ?r ?so))
 	   :effect (not(empty ?g))
 )
+
+ (:action drop_objects
+  	   :parameters (?g ?g2 ?r ?so ?s) 
+	   :precondition (and (or (not (empty ?g)) (not (empty ?g2))) (walkable ?s))
+	   :effect (and (empty ?g) (empty ?g2) (small_object_in_room ?r ?so))
+)
   
   (:action move_box
   	   :parameters(?b ?d ?r1 ?r2 ?s)
@@ -53,15 +59,9 @@
   
   (:action climb_down
 		:parameters (?s ?r)
-	   	:precondition (and (on_box ?s))
-	   	:effect (not (on_box ?s))
-)  
- (:action drop_objects
-  	   :parameters (?g ?g2 ?r ?so) 
-	   :precondition (or (not (empty ?g)) (not (empty ?g2))) 
-	   :effect (and (empty ?g) (empty ?g2) (small_object_in_room ?r ?so))
-)
-
+	   	:precondition (and (on_box ?s) (not (walkable ?s)))
+	   	:effect (and (not (on_box ?s)) (walkable ?s))
+) 
 
   (:action turn_on_light
   	   :parameters(?r ?s ?b)
@@ -79,8 +79,7 @@
   	   :parameters (?from ?to ?s ?g ?g2 ?so)
 	   :precondition(and (in_room ?s ?from) (or (adjacent ?from ?to) (adjacent ?to ?from)) 
 	   		     (and (empty ?g ) (empty ?g2))
-			     (not (on_box ?s))
-			     (not (small_object_in_room ?from ?so)))
+			     )
 	   :effect(and (in_room ?s ?to)  (not (in_room ?s ?from)))  	   
 )
 
@@ -88,18 +87,19 @@
   	   :parameters (?from ?to ?s ?g ?g2 ?so1 ?so2 )
 	   :precondition(and (in_room ?s ?from) (small_object_in_room ?from ?so1) (small_object_in_room ?from ?so2)  
 	   		     (or (adjacent ?from ?to) (adjacent ?to ?from)) (and (not (empty ?g)) (not (empty ?g2)))
-			     (not (on_box ?s)))
+			     )
 	   :effect(and (in_room ?s ?to) (small_object_in_room ?to ?so1) (small_object_in_room ?to ?so2)
-	   	        (not (in_room ?s ?from)) (not (small_object_in_room ?from ?so1)) (not (small_object_in_room ?from ?so2)))
+	   	       (not (in_room ?s ?from)) (not (small_object_in_room ?from ?so1)) (not (small_object_in_room ?from ?so2))
+		       (and (not (empty ?g)) (not (empty ?g2))))
 )
 
 (:action change_room_one_hand
   	   :parameters (?from ?to ?s ?g ?g2 ?so)
 	   :precondition(and (in_room ?s ?from) (or (adjacent ?from ?to) (adjacent ?to ?from))
-	   		(or (empty ?g2) (empty ?g)) (small_object_in_room ?from ?so)
-			(not (on_box ?s)))
+	   		(or (empty ?g2) (empty ?g)) (small_object_in_room ?from ?so))
+
 	   :effect(and (in_room ?s ?to) (not (empty ?g)) (small_object_in_room ?to ?so)
-	   	        (not (in_room ?s ?from)) (not (small_object_in_room ?from ?so)))
+	   	        (not (in_room ?s ?from)) (not (small_object_in_room ?from ?so))(empty ?g2))
 )
 
 
